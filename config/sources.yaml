@@ -1,0 +1,50 @@
+# Справочник источников для дашборда (data/dashboard/sources.csv).
+# Источники API (Википедия, OSM, Open-Meteo, OurAirports) и даты их сбора берутся
+# из самих файлов сбора (поле sources / collectedAt), здесь их не дублируем.
+# Здесь — источники, у которых дата не записана в файле данных.
+# date_basis объясняет, откуда взята дата: меняйте её, если узнаете точную дату выгрузки.
+
+ROSSTAT_TRIPS:
+  name: "ЕМИСС 62157: туристские поездки по регионам"
+  url: "https://www.fedstat.ru/indicator/62157"
+  data_used: "Поездки 2022-2025, рост 2025 к 2024"
+  file: "data/raw/rosstat_tourist_trips.csv"
+  period: "2022-2025"
+  collected_at: "2026-10-14"
+  date_basis: "дата получения архива заказчика (первый коммит); дата выгрузки в файле не указана"
+
+ROSSTAT_NIGHTS:
+  name: "ЕМИСС 62489: ночёвки по регионам"
+  url: "https://www.fedstat.ru/indicator/62489"
+  data_used: "Ночёвки 2023-2025, средняя длительность поездки"
+  file: "data/raw/rosstat_tourist_nights.csv"
+  period: "2023-2025"
+  collected_at: "2026-10-14"
+  date_basis: "дата получения архива заказчика (первый коммит); дата выгрузки в файле не указана"
+
+PRICES_ARCHIVE:
+  name: "Цены ски-пассов из архива заказчика"
+  url: "https://www.skiresort.info/ski-resorts/russia/"
+  data_used: "Взрослый дневной ски-пасс по месяцам"
+  file: "data/raw/prices_monthly.json"
+  period: "2025-12 - 2026-06"
+  collected_at: null            # берётся из checked_at строк файла
+  date_basis: "checked_at в файле"
+
+PRICES_MANUAL_2026:
+  name: "Цены ски-пассов, ручной сбор с сайтов курортов"
+  url: ""
+  data_used: "Взрослый ски-пасс, тарифы сезона 2025/26"
+  file: "data/raw/prices_manual_2026.csv"
+  period: "сезон 2025/26"
+  collected_at: null            # берётся из checked_at строк файла
+  date_basis: "checked_at в файле; ссылка на страницу — в каждой строке"
+
+COORDINATES_MANUAL:
+  name: "Ручная проверка координат"
+  url: ""
+  data_used: "Финальные координаты, статус проверки, статус работы курорта"
+  file: "data/reference/coordinate_overrides.csv"
+  period: "на дату проверки"
+  collected_at: null            # берётся из дата_проверки
+  date_basis: "дата_проверки в файле"

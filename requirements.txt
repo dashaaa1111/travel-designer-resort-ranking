@@ -1,0 +1,11 @@
+# расчёт рейтинга (make run / stability / dashboard)
+pyyaml>=6.0
+# тесты
+pytest>=8.0
+# ноутбуки и анализ
+pandas>=2.2,<3
+numpy>=2.0,<3
+openpyxl>=3.1,<4
+matplotlib>=3.9,<4
+seaborn>=0.13,<1
+jupyterlab>=4.2,<5

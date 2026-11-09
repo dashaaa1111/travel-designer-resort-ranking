@@ -1,0 +1,18 @@
+# окружение и служебные файлы
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.ipynb_checkpoints/
+.DS_Store
+.env
+~$*
+
+# кэш ответов API (17 МБ, пересоздаётся скриптом сбора)
+data/cache/
+# пробные прогоны сбора
+data/collected/
+
+# материалы заказчика не публикуются
+docs/*.docx
+data/workbooks/

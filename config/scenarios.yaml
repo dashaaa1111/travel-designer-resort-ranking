@@ -1,0 +1,37 @@
+# Сценарии расчёта. Каждый отличается от baseline только тем, что указано в нём.
+# baseline воспроизводит контрольный результат ТЗ и не должен меняться.
+primary: verified            # какой сценарий считается основным (витрины data/mart/resort_*.csv)
+exclude_peak_prices: true    # строки цен с "новогод" в day_type не участвуют в средней цене
+
+scenarios:
+  baseline:
+    description: "Контрольный расчёт ТЗ: исходные данные пакета, старая погода, прежние цены"
+    features: resorts_json     # resorts_json | collected_v2
+    weather: resorts_json      # resorts_json | collected_v2
+    manual_prices: false
+    price_models: [day_pass]
+    confidence: tz             # tz | verified
+
+  verified:
+    description: "Проверенные координаты, новый сбор OSM и аэропортов, старая погода, цены 2026 (дневные билеты)"
+    features: collected_v2
+    weather: resorts_json
+    manual_prices: true
+    price_models: [day_pass]
+    confidence: verified
+
+  verified_new_weather:
+    description: "Как verified, но погода из нового сбора (ERA5, по точке курорта)"
+    features: collected_v2
+    weather: collected_v2
+    manual_prices: true
+    price_models: [day_pass]
+    confidence: verified
+
+  verified_hourly:
+    description: "Как verified, но в цену добавлены курорты с почасовыми билетами"
+    features: collected_v2
+    weather: resorts_json
+    manual_prices: true
+    price_models: [day_pass, hourly]
+    confidence: verified
